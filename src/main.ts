@@ -5,6 +5,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Setando o timezone para o Brasil
+  process.env.TZ = '-03:00';
+
   // Habilitando globalmente a validação de dados
   app.useGlobalPipes(new ValidationPipe());
 
