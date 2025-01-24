@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete, UseGuards } from "@nestjs/common";
 import { Postagem } from "../entities/postagem.entity";
 import { PostagemService } from "../services/postagem.service";
-import { JwtAuthGuard } from "src/auth/guard/jwt-auth.guard";
+import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
 
   @UseGuards(JwtAuthGuard)
 @Controller("/postagens")

@@ -1,9 +1,8 @@
-import { TemaService } from "src/tema/services/tema.services";
+import { TemaService } from "../../tema/services/tema.services";
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, ILike, Repository } from "typeorm";
 import { Postagem } from "../entities/postagem.entity";
-import { UsuarioService } from "src/usuario/services/usuario.services";
 
 @Injectable()
 export class PostagemService {
