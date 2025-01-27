@@ -1,12 +1,27 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Body, Put, Delete, UseGuards } from "@nestjs/common";
-import { Postagem } from "../entities/postagem.entity";
-import { PostagemService } from "../services/postagem.service";
-import { JwtAuthGuard } from "../../auth/guard/jwt-auth.guard";
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Body,
+  Put,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
+import { Postagem } from '../entities/postagem.entity';
+import { PostagemService } from '../services/postagem.service';
+import { JwtAuthGuard } from '../../auth/guard/jwt-auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-  @UseGuards(JwtAuthGuard)
-@Controller("/postagens")
+@ApiTags('Postagem')
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
+@Controller('/postagens')
 export class PostagemController {
-  constructor(private readonly postagemService: PostagemService) { }
+  constructor(private readonly postagemService: PostagemService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
@@ -40,8 +55,7 @@ export class PostagemController {
 
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  delete(@Param('id', ParseIntPipe) id: number){
+  delete(@Param('id', ParseIntPipe) id: number) {
     return this.postagemService.delete(id);
   }
-
 }
