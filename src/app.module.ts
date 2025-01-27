@@ -1,21 +1,20 @@
-import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
-import { Postagem } from './postagem/entities/postagem.entity';
-import { PostagemModule } from './postagem/postagem.module';
-import { Tema } from './tema/entities/tema.entity';
-import { TemaModule } from './tema/tema.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Usuario } from './usuario/entities/usuario.entity';
-import { UsuarioModule } from "./usuario/usuario.module";
-import { AppController } from './app.controller';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppController } from './app.controller';
+import { AuthModule } from './auth/auth.module';
+import { PostagemModule } from './postagem/postagem.module';
+import { TemaModule } from './tema/tema.module';
+import { UsuarioModule } from './usuario/usuario.module';
 import { ProdService } from './auth/data/services/prod.service';
+import { DevService } from './auth/data/services/dev.service';
+
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      useClass: ProdService,
+      useClass: DevService,
       imports: [ConfigModule],
     }),
     PostagemModule,
@@ -27,4 +26,3 @@ import { ProdService } from './auth/data/services/prod.service';
   providers: [],
 })
 export class AppModule {}
-
